@@ -79,7 +79,7 @@ afterend вставляет после єлемента*/
 
 
 /* Записываем ответы пользователя в маассив данных */
-const answers = []; /* Создали пустой массив [] */
+//const answers = []; /* Создали пустой массив [] */
 
 // answers [0] = prompt('Как ваше имя?', '')
 // answers [1] = prompt('Как ваша фамилия?', '')
@@ -87,19 +87,85 @@ const answers = []; /* Создали пустой массив [] */
 
 //console.log(typeof(answers));
 // console.log(typeof(null)); /* Ошибка - устаревшее */
- /* Интерполяйия - можем вставлять внутрь строки значение переменной */
+/* Интерполяйия - можем вставлять внутрь строки значение переменной */
 
- const category = 'toys';
+//const category = 'toys';
 
- //console.log('https://someurl.com/' + category + '/' + '4'); /* устарело */
- console.log(`https://someurl.com/${category}/5`); /* работает тлько с косыми кавычками */
+//console.log('https://someurl.com/' + category + '/' + '4'); /* устарело */
+//console.log(`https://someurl.com/${category}/5`); /* работает тлько с косыми кавычками */
  
- const user = "Yevhen";
+//const user = "Yevhen";
  
- alert(`hello, ${user}`);
- 
+//alert(`hello, ${user}`);
 
 
+/* ОПЕРТОРЫ JS */
+
+console.log('arr' + " - object"); /* Рзультат кода: arr - object */
+console.log(4 + +" - object"); /* Рзультат кода:  NaN (Not a Number) */
+console.log(4 + "5"); /* Рзультат кода:  45 */
+console.log(4 + +"5"); /* Рзультат кода:  9 */
+/* + Перед любым аргументом называется унарным (унарный плюс) */
 
 
+/* ОПЕРАТОРЫ ДЛЯ УКОРОЧЕНИЯ КОДА */
+/* ИНКРИМЕНТ И ДЕКРИМЕНТ (Увеличивает или уменьшает на еденицу соответственно) */
 
+let incr = 10,
+    decr = 10;
+
+//incr++;
+//decr--;/* Операторы перед значением - ПРЕФИКСНЫЕ */
+
+//incr++;
+//decr--;/* Операторы после значения - ПОСТФИКСНЫЕ */
+
+console.log(incr);
+console.log(decr);
+/* Результт 11 и 9 соответственно */
+console.log(incr++);
+console.log(decr--);/* Результат 10 и 10 */
+
+console.log(++incr);
+console.log(--decr);/* Результат 11 и 9 */
+
+console.log(2*4 == '8'); /* Сравниваем по значению, хотя '8' строчное а не цифровое*/
+console.log(2*4 === 8);/* Сравниваем по типу */
+/* = ПРИСВАИВАНИЕ ЗНАЧЕНИЯ */
+/* == СРАВНИВАНИЕ ЗНАЧЕНИЙ */
+/* === СТРОГОЕ РАВЕНСТВО - СРАВНИВАНИЕ ЗНАЧЕНИЙ ПО ТИПУ */ 
+
+
+/* ЛОГИЧЕСКИЕ ОПЕРАТОРЫ "И" и "ИЛИ" */
+
+/* && - "И" */
+/* || - "ИЛИ" */
+
+
+const isChecked = true,
+      isClose = true;
+
+console.log(isChecked && isClose); /* true */
+
+
+const isChecked = true,
+      isClose = false;
+
+console.log(isChecked || isClose); /* true */
+
+
+/* ОПЕРАТОР ОТРИЦАНИЯ - "!" МЕНЯЕТ ЗНАЧЕНИЕ НА ПРОТИВОПОЛОЖНОЕ */
+
+const isChecked = false,
+      isClose = false;
+
+console.log(isChecked || !isClose);
+
+/* ПОРЯДОК ВЫПОЛНЕНИЯ ОПЕРАТОРОВ */
+/* СМОТРЕТЬ ТАБЛИЦУ ОПЕРАТОРОВ */
+
+console.log(2+2*2 === 8); /* Не равно 8 потому что приоритет у оператора умножения больше чем у сложения   */
+
+console.log(2+2*2 != 8); /* true потому что читается как не равно 8 */
+
+console.log(2+2*2 !== '6'); /* true потому что не равно по типу */
