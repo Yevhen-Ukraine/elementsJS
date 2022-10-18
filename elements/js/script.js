@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 const box = document.getElementById('box'),
       btns = document.getElementsByTagName('button'),
@@ -61,4 +61,45 @@ div.insertAdjacentHTML('beforebegin', '<h2>Hello</h2>');
 afterbegin соответственно вставляет в нычало элемкнта 
 beforeend вставляет перед концом 
 afterend вставляет после єлемента*/
+
+//Общение с пользователем
+
+//alert('Joke')
+
+//const question = confirm("Are you here?");
+//console.log(question);
+
+//const answer = prompt("Вам есть 18?", "18");
+//console.log(answer);
+//console.log(typeof(answer)); /*typeof - Оперратор для проверки на тип данных */
+//Любая информация полученная от клиента всегда приходит в виде строк - string
+// const answer = +prompt("Вам есть 18?", "18"); /* + - Получаем числовое значение */
+//const answer = +prompt("Вам есть 18?", "18");
+//console.log(answer + 5); /* К введённому числу прибавит 5 */
+
+
+/* Записываем ответы пользователя в маассив данных */
+const answers = []; /* Создали пустой массив [] */
+
+// answers [0] = prompt('Как ваше имя?', '')
+// answers [1] = prompt('Как ваша фамилия?', '')
+// answers [2] = prompt('Сколько вам лет?', '')
+
+//console.log(typeof(answers));
+// console.log(typeof(null)); /* Ошибка - устаревшее */
+ /* Интерполяйия - можем вставлять внутрь строки значение переменной */
+
+ const category = 'toys';
+
+ //console.log('https://someurl.com/' + category + '/' + '4'); /* устарело */
+ console.log(`https://someurl.com/${category}/5`); /* работает тлько с косыми кавычками */
+ 
+ const user = "Yevhen";
+ 
+ alert(`hello, ${user}`);
+ 
+
+
+
+
 
