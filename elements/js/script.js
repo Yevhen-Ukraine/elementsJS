@@ -489,13 +489,13 @@ console.log(arrayOfNumbers);
 Должен получиться точно такой же массив */
 
 const arr = [3, 5, 8, 16, 20, 23, 50];
-const result = [];
+const resultt = [];
 //const result = [...arr];
 for (let i = 0; i < arr.length; i++) {
-    result [i] = arr [i];
+    resultt [i] = arr [i];
 }
 
-console.log(result);
+console.log(resultt);
 
 
 /* Задача 7: Измените данный массив так, чтобы все числа были увеличены в 2 раза, а если попадается строка строка - то к ней было добавлено " - done".
@@ -512,3 +512,48 @@ for (let i = 0; i < data.length; i++) {
 }
 
 console.log(data);
+
+/* Задача 8: Разверните массив data наоборот при помощи цикла и запишите данные в массив result.
+Должно получиться: [ 'Homework', 20, 'Shopping', 10, 5 ] */
+/* Перебор с конца массива */
+const revers = [5, 10, 'Shopping', 20, 'Homework'];
+const result = [];
+for (let i = revers.length - 1; i >= 0; i--) {
+    result[revers.length - 1 - i] = revers[i];
+    
+}
+console.log(result);
+
+const data = [5, 10, 'Shopping', 20, 'Homework'];
+    const result = [];
+
+    for (let i = 1; i <= data.length; i++) {
+        result[i - 1] = data[data.length - i]
+    }
+
+    console.log(result);
+
+/* Задача 9: Необходимо написать код, который при помощи звездочек (*) в консоли нарисует вот такую фигуру:
+
+     *
+    ***
+   *****
+  *******
+ *********
+***********
+(Подсказка: в конце фигуры есть перенос строки \n, который тоже учитывается в тестах. В КОНЦЕ КАЖДОЙ СТРОКИ НЕТ ПРОБЕЛОВ, ТОЛЬКО ПЕРЕНОС) */ 
+
+    const lines = 5;
+    let result = '';
+    
+    for (let i = 0; i <= lines; i++) {
+        for (let j = 0; j < lines - i; j++) {
+            result += " ";
+        }
+        for (let j = 0; j < 2 * i + 1; j++) {
+            result += "*";
+        }
+        result += "\n";
+    }
+    
+    console.log(result)
