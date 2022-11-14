@@ -42,3 +42,20 @@ personalMovieDB.movies[a] = b;
 personalMovieDB.movies[c] = d;
 
 console.log(personalMovieDB);
+
+//Нажатие на любую область для закрытия
+function modalClose (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+modal.onclick = modalClose
+
+//Кнопки регистрации по нажатию поочередно меняют цвет
+const items = document.querySelectorAll('.modal-content__input');
+items.forEach(item => {
+  item.addEventListener('click', function () {
+    items.forEach(elem => elem.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
