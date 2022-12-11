@@ -544,7 +544,7 @@ const data = [5, 10, 'Shopping', 20, 'Homework'];
 (Подсказка: в конце фигуры есть перенос строки \n, который тоже учитывается в тестах. В КОНЦЕ КАЖДОЙ СТРОКИ НЕТ ПРОБЕЛОВ, ТОЛЬКО ПЕРЕНОС) */ 
 
     const lines = 5;
-    let result = '';
+    let results = '';
     
     for (let i = 0; i <= lines; i++) {
         for (let j = 0; j < lines - i; j++) {
@@ -619,9 +619,10 @@ function getMathResult(num, times) {
             // str = str + num * i + "---"
         }
     }
-
+console.log(str);
     return str;
 }
 
-getMathResult(10, 5);
+getMathResult(10, 3);
 
+/* результат 10---20---30 */
