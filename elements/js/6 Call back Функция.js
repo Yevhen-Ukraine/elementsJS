@@ -43,4 +43,4 @@ function done() {
     console.log('Я прошел этот рок!');
 }
 
-learnJS('JavaScript', done);
+learnJS('JavaScript', done);  
