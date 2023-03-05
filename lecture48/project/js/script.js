@@ -41,29 +41,63 @@ document.addEventListener('DOMContentLoaded', () => {
         addForm.addEventListener('submit', (event) => { //Чтобі отследить отправку формі есть обработчик собітий submit и стрелочную функцию
             event.preventDefault(); //Отменяем стандартное поведение браузера, чтобы при нажатии отправить страничка не перезагружалась
             //Далее Узнаем что пользователь ввёл и поставил ли галочку
-            const newFilm = addInput.value; //В свойстве value будет содержаться то что ввел пользователь
+            let newFilm = addInput.value; //В свойстве value будет содержаться то что ввел пользователь. не забывать что свойство velue содержит пустую строку, поэтому при нажатии кнопки подтвердить строки для фильмов будут заполняться пустым содержимым
             const favorite = checkbox.checked; //Атрибут checked получает булиновые значения (поставлена галочка или нет tru или folse)
 
-            movieDB.movies.push(newFilm); //Добовляем в список то что ввел пользователь.
+            // Пишем условие в которое помещаем newFilm, оно будет выполняться только тогда, когда input будет заполнен. Тоесть если input не пустая строка, а newFilm в логическом контексте будет true:
+            if (newFilm) {
 
-            movieDB.movies.sort(); //Сортируем по алфовиту
+                // Второе задание 2)
+                if (newFilm.length > 21) {
+                    newFilm = `${newFilm.substring(0, 22)}...`
+                }
+
+                if (favorite) {
+                    console.log("Добавляем любимый фильм");//Задание 4)
+                }
+
+                movieDB.movies.push(newFilm); //Добовляем в список то что ввел пользователь.
+
+                // movieDB.movies.sort(); //Сортируем по алфовиту
+                sortArr(movieDB.movies);
+
+                createMovieList(movieDB.movies, movieList);//Обновляем      список фильмов
+            }
+
             
+
+            event.target.reset(); //
+
         });
 
     //Удаление рекламы
-    const deleteAdv = ()
-    adv.forEach(item => {
-        item.remove();
-    });
+    const deleteAdv = (arr) => {
+        arr.forEach(item => {
+            item.remove();
+        });
+    };
+    deleteAdv(adv);
+    // Создаем функцию для последующего переиспользования
     
-    genre.textContent = 'драма';
+
+
+    const makeChanges = () => {
+        genre.textContent = 'драма';
     
-    poster.style.backgroundImage = 'url("img/bg.jpg")';
-    
-    movieDB.movies.sort(); //Сортируем по алфавиту
+        poster.style.backgroundImage = 'url("img/bg.jpg")';
+    };
+    makeChanges();
+    // Создаем функцию для последующего переиспользования
+
+    const sortArr = (arr) => {
+        arr.sort();
+    };
+
+
 
     function createMovieList(films, parent) { //Оборачиваем в фунцию для повторного использования
         parent.innerHTML = ""; //Удаляем все фильмы записанные в html.
+        sortArr(films);
 
         films.forEach((film, i) => { //Обращаемся к базе данных и перебираем используя колбэк фуекцию
             parent.innerHTML += `
@@ -72,6 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </li>
             `;
         });
+
+        document.querySelectorAll('.delete').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.remove();//Удаляем со страницы
+                movieDB.movies.splice(i, 1)// Удаляем с базы данных В атрибутах (удаленный эл, сколько эл)
+                createMovieList(movieDB.movies, movieList);//Перезапускаем эту функцию, чтобы нумерация пунктов построилась заново            
+            })
+        })
     }
 
     createMovieList(movieDB.movies, movieList);
