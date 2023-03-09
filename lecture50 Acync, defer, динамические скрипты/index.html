@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Document</title>
+
+</head>
+<body>
+
+	<!-- !!!!!!!!!!!!!!!!!!!! -->
+	<!-- <script defer src="script.js"></script> -->
+	<!-- <script defer src="test.js"></script> -->
+<!-- Атрибут defer запускает выполнение скрипта в фоновом режиме до полного построения всей вёрстки  -->
+
+<!-- Также сохраняеться последовательность выполнения скриптов -->
+
+<!--Атрибут Async -->
+<!-- <script async src="script.js"></script> -->
+<!-- <script async src="test.js"></script> -->
+
+<!-- 1. Страница не ждет асинхронных скриптов, загружается тоже в фоновом режиме, а содержимое обрабатывается и отображается -->
+<!-- 2. События DOMContentLoaded не ждут друг друга -->
+<!-- Скрипт с таким атрибутом не должен зависеть от ДОМ и других скриптов. Пример: Метрики и счётчики -->
+	<script src="js/script.js"></script>
+	<p>Hello world!</p>
+	<p>Second message</p>
+
+	
+
+
+</body>
+</html>
