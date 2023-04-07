@@ -1,8 +1,8 @@
 'use strict';
 
 const user = {
-    name: 'Alex';
-    surname: 'Smith';
+    name: 'Alex',
+    surname: 'Smith',
     birthdey: '20/04/1993',
     swowMyPablicData: function () {
         console.log(`${this.name} ${this.surname}`);
@@ -38,12 +38,57 @@ const shops = [
     {bread: 50}    
 ];
 
-const budget = [5000, 6000, 8000];
+const budget = [5000, 15000, 25000];
 
-const map = new Map();
+/* Так карта выглядит изнутри, массив массивов */
+const map = new Map([
+    [{paper: 400}, 8000]
+]);
 
-shops.forEach((shops, i) => {
+shops.forEach((shop, i) => {
     map.set(shop, budget[i]);
 })
 
 console.log(map);
+// console.log(map.get(shops[0])); //получение значений (получим первый элемент)
+// console.log(map.hes(shops[0])); // Проверка обьекта на существование
+// map.delete(key); // удаляет что-то из карты 
+// map.clear(); // Очистка карты
+// map.size; // Колличество элементов на данный момент внутри карты 
+// map.keys() // 
+
+/* 4 СПОСОБА ПЕРЕБРАТЬ КАРТЫ */
+/* 1. */
+// map.keys() // Возвращает итерируемый (перебираемый) обьект по ключам
+// Пример:
+// Необходимо получить список всех товаров во всех магазинах
+
+// const goods = [];
+// for (let shop of map.keys()) {
+//     goods.push(Object.keys(shop)[0])
+// }
+// console.log(goods);
+// Получаем массив с наименованием всех товаров во всех магазинах
+
+/* 2. Этот метод позволяет получить вместо ключей значения (итерируемый обьект по значениям) */
+// for (let price of map.values()) {
+//     console.log(price);
+// }
+
+/* 3. Метод entries позволяет получить массив с массивами которые имеют два элемента: свойство и значение*/
+// for (let price of map.entries()) {
+//     console.log(price);
+// } 
+// С помощью этого метода можно выполнить два предидущих
+
+/* Можно сразу для удобства деструктуризировать  */
+// for (let [shop, price] of map.entries()) {
+//     console.log(shop, price);
+// }
+// Получаем разделенную структуру
+
+/* 4. Использование метода forEach */
+
+map.forEach((value, key, map) => { /*Аргументы: Значение, ключ, карта на которую можно ссылаться внутри колбек функции */
+    console.log(key, value);
+});
