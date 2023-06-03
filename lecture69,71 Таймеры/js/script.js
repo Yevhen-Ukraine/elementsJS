@@ -111,4 +111,71 @@ window.addEventListener('DOMContentLoaded', () => {
 
     setClock('.timer', deadline);
 
+    /* Modal */
+
+    const modalTrigger = document.querySelectorAll('[data-modal]'),
+          modal = document.querySelector('.modal'),
+          modalCloseBtn = document.querySelector('[data-close]');
+    
+    modalTrigger.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.classList.add('show');
+            modal.classList.remove('hide');
+            document.body.style.overflow = 'hidden'; //Отключаем прокрутку странички за модальным окном
+         });
+    });
+    
+    function closModal() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }/* Оптимизируем повторяющийся код созданием отдельной функции и передаем ее вторым аргументом */
+    modalCloseBtn.addEventListener('click', closModal);
+
+    // modalCloseBtn.addEventListener('click', () => {
+    //     modal.classList.add('hide');
+    //     modal.classList.remove('show');
+    //     document.body.style.overflow = ''; // При закрытии возвращаем пустую строку и браузер устанавливает значения по умолчанию
+    // });
+
+
+    /* Вариант с переключателем toggle */
+/* Для использования toggel в класс modal добавляем класс show */
+    // modalTrigger.addEventListener('click', () => {
+    //     // modal.classList.add('show');
+    //     // modal.classList.remove('hide');
+    //     modal.classList.toggle('show');
+    //     document.body.style.overflow = 'hidden'; //Отключаем прокрутку странички за модальным окном
+    //  });
+ 
+    //  modalCloseBtn.addEventListener('click', () => {
+    //     //  modal.classList.add('hide');
+    //     //  modal.classList.remove('show');
+    //     modal.classList.toggle('show');
+    //      document.body.style.overflow = ''; // При закрытии возвращаем пустую строку и браузер устанавливает значения по умолчанию
+    //  });
+
+
+    /* Закрываем окно поклику на подложку модального окна */
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            
+            // modal.classList.add('hide');
+            // modal.classList.remove('show');
+            // document.body.style.overflow = '';
+
+            closModal();
+        }
+    });
+
+    /* Закрытие модального окна с помощью клавиатуры (Esc) */
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === "Escape" && modal.classList.contains('show')) {
+            closModal();
+        } /* Использование условия И закрывает модальное окно клавишей Esc только если окно 'show' */
+    });
+
 });
+
