@@ -118,12 +118,20 @@ window.addEventListener('DOMContentLoaded', () => {
           modalCloseBtn = document.querySelector('[data-close]');
     
     modalTrigger.forEach(btn => {
-        btn.addEventListener('click', () => {
-            modal.classList.add('show');
-            modal.classList.remove('hide');
-            document.body.style.overflow = 'hidden'; //Отключаем прокрутку странички за модальным окном
-         });
+        // btn.addEventListener('click', () => {
+        //     modal.classList.add('show');
+        //     modal.classList.remove('hide');
+        //     document.body.style.overflow = 'hidden'; //Отключаем прокрутку странички за модальным окном
+        //  });
+        btn.addEventListener('click', openModal);
     });
+
+    function openModal() {
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+        document.body.style.overflow = 'hidden';
+        clearInterval(modalTimerId); // Если пользователь уже открывал окно самостоятельно, то окно не будет всплывать.
+    }
     
     function closModal() {
         modal.classList.add('hide');
@@ -176,6 +184,16 @@ window.addEventListener('DOMContentLoaded', () => {
             closModal();
         } /* Использование условия И закрывает модальное окно клавишей Esc только если окно 'show' */
     });
+    const modalTimerId = setTimeout(openModal, 3000);
+
+    function showModalByScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
+            openModal();
+            window.removeEventListener('scroll', showModalByScroll); //окно не появляется снова при повторном скроле до конца страницы
+        }
+    }
+
+    window.addEventListener('scroll', showModalByScroll);
 
 });
 
