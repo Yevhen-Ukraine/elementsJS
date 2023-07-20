@@ -184,7 +184,8 @@ window.addEventListener('DOMContentLoaded', () => {
             closModal();
         } /* Использование условия И закрывает модальное окно клавишей Esc только если окно 'show' */
     });
-    const modalTimerId = setTimeout(openModal, 3000);
+
+    // const modalTimerId = setTimeout(openModal, 3000);
 
     function showModalByScroll() {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
@@ -194,6 +195,30 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', showModalByScroll);
+
+    // Используем классы для карточек
+
+    class MenuCard {
+        constructor(src, alt, title, descr, price) {
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.descr = descr;
+            this.price = price;
+            this.transfer = 41;
+            this.changeToUAN();
+        }
+
+        changeToUAN() {
+            this.price = this.price * this.transfer;
+        } // Этот метод можно вызвать в render, а можно в самом конструкторе
+
+        // Метод для формирования верстки
+        // Создаем элемент, помещаем вёрстку, дополняем данными которые приходят как аргументы и поместить этот элемент на страницу
+        render() {
+            const element = document.createElement('div');
+        }
+    }
 
 });
 
