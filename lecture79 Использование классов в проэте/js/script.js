@@ -199,12 +199,13 @@ window.addEventListener('DOMContentLoaded', () => {
     // Используем классы для карточек
 
     class MenuCard {
-        constructor(src, alt, title, descr, price) {
+        constructor(src, alt, title, descr, price, parentSelector) {
             this.src = src;
             this.alt = alt;
             this.title = title;
             this.descr = descr;
             this.price = price;
+            this.perent = document.querySelector(parentSelector);
             this.transfer = 41;
             this.changeToUAN();
         }
@@ -217,8 +218,57 @@ window.addEventListener('DOMContentLoaded', () => {
         // Создаем элемент, помещаем вёрстку, дополняем данными которые приходят как аргументы и поместить этот элемент на страницу
         render() {
             const element = document.createElement('div');
+            element.innerHTML = `
+                <div class="menu__item">
+                    <img src=${this.src} alt=${this.alt}>
+                    <h3 class="menu__item-subtitle">${this.title}</h3>
+                    <div class="menu__item-descr">${this.descr}</div>
+                    <div class="menu__item-divider"></div>
+                    <div class="menu__item-price">
+                        <div class="menu__item-cost">Цена:</div>
+                        <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+                    </div>
+                </div>
+            `;
+            this.perent.append(element);
         }
     }
+
+    // Создаем новій обьект и візіваем метод render (два способа)
+
+    // 1
+    // const div = new MenuCard();
+    // div.render();
+
+    // 2 Метод использования на месте
+    // Обьект может сужествовать и без переменной, делаеться это тогда, когда мы небудем переиспользовать обьект в последствии. Обьект будет использоваться на месте, он создасться и удалиться, потому что на него не будет потом никаких ссылок.
+
+    new MenuCard(
+        "img/tabs/vegy.jpg",
+        "vegy",
+        'Меню "Фитнес"',
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        9,
+        '.menu .container'
+    ).render();
+
+    new MenuCard(
+        "img/tabs/elite.jpg",
+        "elite",
+        'Меню "Премиум"',
+        'Меню "Премиум" мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+        14,
+        '.menu .container'
+    ).render();
+
+    new MenuCard(
+        "img/tabs/post.jpg",
+        "post",
+        'Меню "Постное"',
+        'Меню "Постное" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        21,
+        '.menu .container'
+    ).render();
 
 });
 
