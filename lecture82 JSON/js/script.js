@@ -1,9 +1,9 @@
 'use strict';
 
-const persone = {
-    name: 'Alex',
-    tell: '+47777777'
-};
+// const persone = {
+//     name: 'Alex',
+//     tell: '+47777777'
+// };
 
 console.log(JSON.stringify(persone)); // Преобразование данных при передаче на сервер
 console.log(JSON.parse(JSON.stringify(persone))); // Преобразование данных при получении с сервера
