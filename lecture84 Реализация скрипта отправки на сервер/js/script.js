@@ -231,15 +231,16 @@ window.addEventListener('DOMContentLoaded', function() {
 
             let statusMessage = document.createElement('div');
             statusMessage.classList.add('status');
-            statusMessage.textContent = message.loading;
+            statusMessage.textContent = message.loading; // Помещаем сообщение которое хотим показать
             form.appendChild(statusMessage);
         
             const request = new XMLHttpRequest();
             request.open('POST', 'server.php');
-            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-            const formData = new FormData(form);
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8'); // Настройка заголовков, которые говорят серверу, что именно приходит
+            const formData = new FormData(form); // input обязательно должен содержать атрибут name="name"
 
-            const object = {};
+            
+            const object = {};// Обьект formData спецефический, его просто так нельзя пеергнать в другой формат. Для этого применяем следующий прием:
             formData.forEach(function(value, key){
                 object[key] = value;
             });
@@ -247,14 +248,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
             request.send(json);
 
-            request.addEventListener('load', () => {
-                if (request.status === 200) {
+            request.addEventListener('load', () => { // В этом обработчике событий конечную загрузку нашего запроса к серверу "load"
+                if (request.status === 200) { //проверка на прохождение запроса
                     console.log(request.response);
                     statusMessage.textContent = message.success;
-                    form.reset();
+                    form.reset(); // очищаем форму после отправки
                     setTimeout(() => {
                         statusMessage.remove();
-                    }, 2000);
+                    }, 2000); // Удаляем блок со страницы 
                 } else {
                     statusMessage.textContent = message.failure;
                 }
