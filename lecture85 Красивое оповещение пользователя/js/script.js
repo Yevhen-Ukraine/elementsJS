@@ -120,7 +120,7 @@ window.addEventListener('DOMContentLoaded', function() {
         if (e.target === modal || e.target.getAttribute('data-close') == "") {
             closeModal();
         }
-    });
+    }); // Сдесь добавляем условие, что если мы кликаем на подложку или получаем атрибут data-close то модальное окно закрываеться
 
     document.addEventListener('keydown', (e) => {
         if (e.code === "Escape" && modal.classList.contains('show')) { 
@@ -260,20 +260,22 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function showThanksModal(message) {
+    // Показываем диалоговое окно в уже созданном модальном окне
+
+    function showThanksModal(message) { // Передаем сообщение в это окно как аргумент функции, которое мы берем из обьекта
         const prevModalDialog = document.querySelector('.modal__dialog');
 
-        prevModalDialog.classList.add('hide');
-        openModal();
+        prevModalDialog.classList.add('hide'); // Скрываем modal__dialog с помощью класса hide. В стилях классы show{display:block}.hide{display:none} соответственно отвечают за скрытие  контента в выбранном блоке
+        openModal(); // Когда вызываеться функция showThanksModal подвязываеться функция openModal которая отвечает за открытие модальных окон.
 
         const thanksModal = document.createElement('div');
-        thanksModal.classList.add('modal__dialog');
+        thanksModal.classList.add('modal__dialog');// Один modal__dialog заменяем другим
         thanksModal.innerHTML = `
             <div class="modal__content">
                 <div class="modal__close" data-close>×</div>
                 <div class="modal__title">${message}</div>
             </div>
-        `;
+        `; // Формируем верстку которую будем помещать в новый "modal__content"
         document.querySelector('.modal').append(thanksModal);
         setTimeout(() => {
             thanksModal.remove();
